@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
     "product": 3,
-    "taxNumber": "FRTY124678342",
+    "taxNumber": "FRTY124678342"
 }
 
 ### Calculate ipnone price for Greece
