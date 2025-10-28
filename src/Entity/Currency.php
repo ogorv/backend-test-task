@@ -21,8 +21,9 @@ class Currency
 
     public function __construct(string $code, int $precision = 2)
     {
-        $this->code = $code;
-        $this->id   = null;
+        $this->code      = $code;
+        $this->precision = $precision;
+        $this->id        = null;
     }
 
     public function getId(): ?int
