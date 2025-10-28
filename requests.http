@@ -1,12 +1,53 @@
-### Calculate Price
+### Calculate ipnone price for Germany
 POST http://127.0.0.1:8337/calculate-price
 Accept: application/json
 Content-Type: application/json
 
 {
   "product": 1,
-  "taxNumber": "DE123456789",
-  "couponCode": "D15"
+  "taxNumber": "DE123456789"
+}
+
+### Calculate case price for France
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 3,
+    "taxNumber": "FRTY124678342",
+}
+
+### Calculate ipnone price for Greece
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "GR123673456"
+}
+
+### Calculate iphone price for Greece with discount 6%
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "GR123673456",
+    "couponCode": "P6"
+}
+
+### Calculate iphone price for France with discount 15%
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "FRTY124678342",
+    "couponCode": "P15"
 }
 
 ### Execute Purchase
