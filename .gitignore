@@ -11,3 +11,7 @@ compose.override.yaml
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###> phpunit ###
+/tools/phpunit/.phpunit.cache
+###< phpunit ###
