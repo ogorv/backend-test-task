@@ -11,3 +11,30 @@ services:
             - .:/app:rw
         environment:
             - APP_ENV=dev
+        networks:
+          - network_app
+        depends_on:
+          - db
+    db:
+      image: mariadb:11.4.2
+      restart: always
+      environment:
+        MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+        MARIADB_DATABASE: ${MARIADB_DATABASE}
+        MARIADB_USER: ${MARIADB_USER}
+        MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      ports:
+        - '3316:3306'
+      volumes:
+        - type: volume
+          source: db-data
+          target: /var/lib/mysql
+      networks:
+        - network_app
+
+networks:
+  network_app:
+
+volumes:
+  db-data:
+    driver: local
