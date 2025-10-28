@@ -13,9 +13,10 @@ class CurrencyTest extends TestCase
 {
     public function testGetterAndSetter(): void
     {
-        $currency = new Currency('DE');
+        $currency = new Currency('DE', 2);
 
         $this->assertNull($currency->getId());
         $this->assertSame('DE', $currency->getCode());
+        $this->assertSame(2, $currency->getPrecision());
     }
 }

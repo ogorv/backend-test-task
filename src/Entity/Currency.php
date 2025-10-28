@@ -16,7 +16,10 @@ class Currency
     #[ORM\Column(length: 255)]
     private string $code;
 
-    public function __construct(string $code)
+    #[ORM\Column(length: 255)]
+    private int $precision;
+
+    public function __construct(string $code, int $precision = 2)
     {
         $this->code = $code;
         $this->id   = null;
@@ -30,5 +33,10 @@ class Currency
     public function getCode(): string
     {
         return $this->code;
+    }
+
+    public function getPrecision(): int
+    {
+        return $this->precision;
     }
 }
