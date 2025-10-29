@@ -37,6 +37,7 @@ class PriceCalculation
             throw new InvalidArgumentException('Country not found');
         }
 
+        // Можно добавить вывод ошибки, если купон не найден
         $price  = (float)$product->getPrice();
         $coupon = $couponCode ? $this->couponRepository->findOneBy(['code' => $couponCode]) : null;
 

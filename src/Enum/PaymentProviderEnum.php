@@ -6,6 +6,8 @@ namespace App\Enum;
 
 enum PaymentProviderEnum: string
 {
+    use GettingValuesTrait;
+
     case PAYPAL = 'paypal';
 
     case STRIPE = 'stripe';
