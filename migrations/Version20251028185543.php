@@ -30,7 +30,7 @@ final class Version20251028185543 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE product DROP FOREIGN KEY FK_D34A04AD38248176');
+        $this->addSql('ALTER TABLE product DROP FOREIGN KEY product_currency_id_fk');
         $this->addSql('DROP TABLE country');
         $this->addSql('DROP TABLE coupon');
         $this->addSql('DROP TABLE currency');

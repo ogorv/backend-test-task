@@ -13,7 +13,7 @@ class PurchaseRequestDtoTest extends TestCase
 {
     public function testGetters(): void
     {
-        $dto = new PurchaseRequestDto(1, 'DE123456789', 'D15', 'paypal');
+        $dto = new PurchaseRequestDto(1, 'DE123456789', 'paypal', 'D15');
 
         $this->assertSame('DE123456789', $dto->getTaxNumber());
         $this->assertSame('D15', $dto->getCouponCode());

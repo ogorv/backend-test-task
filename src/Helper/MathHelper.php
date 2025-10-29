@@ -6,6 +6,11 @@ namespace App\Helper;
 
 class MathHelper
 {
+    public function getMinorUnits(float $amount, int $precision): int
+    {
+        return (int)($amount * (10 ** $precision));
+    }
+
     public function getPercentFromNumber(float $number, float $percent): float
     {
         return 0.01 * $percent * $number;
@@ -16,7 +21,6 @@ class MathHelper
      */
     public function subPercent(float $amount, float $percent): float
     {
-
         return $amount - $this->getPercentFromNumber($amount, $percent);
     }
 

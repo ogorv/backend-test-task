@@ -12,6 +12,15 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(MathHelper::class)]
 class MathHelperTest extends TestCase
 {
+    #[TestWith([100, 2, 10000])]
+    #[TestWith([100.34, 2, 10034])]
+    #[TestWith([98.2, 3, 98200])]
+    public function testGetMinorUnits(float $amount, int $precision, int $result): void
+    {
+        $matchHelper = new MathHelper();
+
+        $this->assertSame($result, $matchHelper->getMinorUnits($amount, $precision));
+    }
 
     #[TestWith([100, 10, 90.00])]
     #[TestWith([200, 0.5, 199.00])]

@@ -31,12 +31,12 @@ class PriceCalculationTest extends TestCase
         $country->method('getTaxPercent')->willReturn(19.00);
 
         $countryRepository = $this->createMock(CountryRepository::class);
-        $countryRepository->expects($this->once())->method('requireOneByCode')->willReturn($country);
+        $countryRepository->expects($this->once())->method('findOneBy')->willReturn($country);
 
         $productRepository = $this->createMock(ProductRepository::class);
         $productRepository
             ->expects($this->once())
-            ->method('requireOneWithCurrencyById')
+            ->method('find')
             ->with($productId)
             ->willReturn($product);
 
@@ -72,12 +72,12 @@ class PriceCalculationTest extends TestCase
         $country->method('getTaxPercent')->willReturn(19.00);
 
         $countryRepository = $this->createMock(CountryRepository::class);
-        $countryRepository->expects($this->once())->method('requireOneByCode')->willReturn($country);
+        $countryRepository->expects($this->once())->method('findOneBy')->willReturn($country);
 
         $productRepository = $this->createMock(ProductRepository::class);
         $productRepository
             ->expects($this->once())
-            ->method('requireOneWithCurrencyById')
+            ->method('find')
             ->with($productId)
             ->willReturn($product);
 
@@ -100,7 +100,7 @@ class PriceCalculationTest extends TestCase
 
         $couponRepository = $this->createMock(CouponRepository::class);
 
-        $couponRepository->expects($this->once())->method('requireOneByCode')->with($couponCode)->willReturn($coupon);
+        $couponRepository->expects($this->once())->method('findOneBy')->with(['code' => $couponCode])->willReturn($coupon);
 
         $priceCalculation = new PriceCalculation(
             $productRepository,
@@ -127,12 +127,12 @@ class PriceCalculationTest extends TestCase
         $country->method('getTaxPercent')->willReturn(19.00);
 
         $countryRepository = $this->createMock(CountryRepository::class);
-        $countryRepository->expects($this->once())->method('requireOneByCode')->willReturn($country);
+        $countryRepository->expects($this->once())->method('findOneBy')->willReturn($country);
 
         $productRepository = $this->createMock(ProductRepository::class);
         $productRepository
             ->expects($this->once())
-            ->method('requireOneWithCurrencyById')
+            ->method('find')
             ->with($productId)
             ->willReturn($product);
 
@@ -149,7 +149,7 @@ class PriceCalculationTest extends TestCase
 
         $couponRepository = $this->createMock(CouponRepository::class);
 
-        $couponRepository->expects($this->once())->method('requireOneByCode')->with($couponCode)->willReturn($coupon);
+        $couponRepository->expects($this->once())->method('findOneBy')->with(['code' => $couponCode])->willReturn($coupon);
 
         $priceCalculation = new PriceCalculation(
             $productRepository,

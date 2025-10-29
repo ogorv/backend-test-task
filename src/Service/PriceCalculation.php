@@ -10,7 +10,6 @@ use App\Helper\MathHelper;
 use App\Repository\CountryRepository;
 use App\Repository\CouponRepository;
 use App\Repository\ProductRepository;
-use Doctrine\ORM\NoResultException;
 use InvalidArgumentException;
 
 class PriceCalculation
@@ -23,20 +22,26 @@ class PriceCalculation
     ) {
     }
 
-    /**
-     * @throws NoResultException
-     */
     public function calculate(int $productId, string $taxNumber, ?string $couponCode = null): float
     {
-        $product     = $this->productRepository->requireOneWithCurrencyById($productId);
+        $product = $this->productRepository->find($productId);
+
+        if (!$product) {
+            throw new InvalidArgumentException('Product not found');
+        }
+
         $countryCode = substr($taxNumber, 0, 2);
+        $country     = $this->countryRepository->findOneBy(['code' => $countryCode]);
 
-        $country = $this->countryRepository->requireOneByCode($countryCode);
-        $price   = (float)$product->getPrice();
+        if (!$country) {
+            throw new InvalidArgumentException('Country not found');
+        }
 
-        if ($couponCode) {
-            $coupon = $this->couponRepository->requireOneByCode($couponCode);
-            $price  = $this->calculateCouponDiscount($price, $coupon);
+        $price  = (float)$product->getPrice();
+        $coupon = $couponCode ? $this->couponRepository->findOneBy(['code' => $couponCode]) : null;
+
+        if ($coupon) {
+            $price = $this->calculateCouponDiscount($price, $coupon);
         }
 
         return $this->mathHelper->addPercent($price, $country->getTaxPercent());

@@ -7,10 +7,10 @@ namespace App\Dto;
 class PurchaseRequestDto
 {
     public function __construct(
-        private readonly int    $product,
-        private readonly string $taxNumber,
-        private readonly string $couponCode,
-        private readonly string $paymentProcessor,
+        private readonly int     $product,
+        private readonly string  $taxNumber,
+        private readonly string  $paymentProcessor,
+        private readonly ?string $couponCode = null,
     ) {
     }
 
@@ -24,13 +24,13 @@ class PurchaseRequestDto
         return $this->taxNumber;
     }
 
-    public function getCouponCode(): string
-    {
-        return $this->couponCode;
-    }
-
     public function getPaymentProcessor(): string
     {
         return $this->paymentProcessor;
+    }
+
+    public function getCouponCode(): ?string
+    {
+        return $this->couponCode;
     }
 }

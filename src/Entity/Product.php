@@ -89,4 +89,9 @@ class Product
 
         return $this;
     }
+
+    public function reduceCount(): void
+    {
+        $this->count--;
+    }
 }
