@@ -39,6 +39,28 @@ Content-Type: application/json
     "couponCode": "P6"
 }
 
+### Calculate iphone price for Greece with discount 6%
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "GR123673456",
+    "couponCode": "F3"
+}
+
+### Calculate iphone price for Greece with fixed discount
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "GR123673456",
+    "couponCode": "F9"
+}
+
 ### Calculate iphone price for France with discount 15%
 POST http://127.0.0.1:8337/calculate-price
 Accept: application/json
@@ -50,6 +72,37 @@ Content-Type: application/json
     "couponCode": "P15"
 }
 
+### Calculate iphone price. Ivalid taxNumber
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "FRTY1246783421",
+    "couponCode": "P15"
+}
+
+### Calculate iphone price. Ivalid taxNumber and coupon
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "FRTY1246783421",
+    "couponCode": "a"
+}
+
+### Calculate iphone price. Product and TaxNumber are emtpy
+POST http://127.0.0.1:8337/calculate-price
+Accept: application/json
+Content-Type: application/json
+
+{
+
+}
+
 ### Execute Purchase
 POST http://127.0.0.1:8337/purchase
 Accept: application/json
@@ -57,7 +110,65 @@ Content-Type: application/json
 
 {
   "product": 1,
-  "taxNumber": "IT12345678900",
-  "couponCode": "D15",
+  "taxNumber": "FRTY124678342",
+  "couponCode": "P15",
   "paymentProcessor": "paypal"
+}
+
+### Purchase iphone for France with discount 15%
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "FRTY124678342",
+    "couponCode": "P15",
+    "paymentProcessor": "stripe"
+}
+
+### Purchase Headphone. Payment error occurred on the provider's side
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 2,
+    "taxNumber": "FRTY124678342",
+    "paymentProcessor": "stripe"
+}
+
+### Purchase iphone for Greece with fixed discount
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "GR123673456",
+    "paymentProcessor": "stripe",
+    "couponCode": "F9"
+}
+
+### Purchase iphone. Payment processor is empty
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "GR123673456",
+    "couponCode": "F9"
+}
+
+### Purchase iphone. Payment processor is invalid
+POST http://127.0.0.1:8337/purchase
+Accept: application/json
+Content-Type: application/json
+
+{
+    "product": 1,
+    "taxNumber": "GR123673456",
+    "paymentProcessor": "test",
+    "couponCode": "F9"
 }

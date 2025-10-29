@@ -14,11 +14,11 @@ class PurchaseRequestDto
         private readonly ?int    $product,
         #[Assert\NotBlank(message: 'Tax number is required.'), Assert\Regex(pattern: '/^(DE[0-9]{9}|IT[0-9]{11}|GR[0-9]{9}|FR[a-zA-Z]{2}[0-9]{9})$/', message: 'Tax number is not valid.')]
         private readonly ?string $taxNumber,
-        #[Assert\Regex(pattern: '/^[P,F]\d{1,3}$/', message: 'Coupon code is not valid.')]
-        private readonly ?string $couponCode = null,
         #[Assert\NotBlank(message: 'Payment processor is required.')]
         #[Assert\Choice(callback: [PaymentProviderEnum::class, 'getValues'], message: 'Payment processor is not valid.')]
         private readonly ?string $paymentProcessor,
+        #[Assert\Regex(pattern: '/^[P,F]\d{1,3}$/', message: 'Coupon code is not valid.')]
+        private readonly ?string $couponCode = null,
     ) {
     }
 
