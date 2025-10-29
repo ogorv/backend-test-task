@@ -25,7 +25,7 @@ class PaymentAdapterManagerPass implements CompilerPassInterface
 
         foreach ($taggedServices as $id => $tags) {
             if (!isset($tags[0][PaymentAdapterManager::PROVIDER])) {
-                throw new CompilerPassException("Provider factory tag not found in $id");
+                throw new CompilerPassException("Provider tag not found in $id");
             }
 
             $paymentProviderEnum = PaymentProviderEnum::from($tags[0][PaymentAdapterManager::PROVIDER]);
